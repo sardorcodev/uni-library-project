@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -16,7 +16,7 @@ const Profile = () => {
 
     const fetchMyLoans = async (userId) => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/books/my-loans/${userId}`);
+            const res = await api.get(`/api/books/my-loans/${userId}`);
             setLoans(res.data);
         } catch (error) {
             console.error(error);
@@ -27,7 +27,7 @@ const Profile = () => {
         if(!window.confirm("Bu kitobni haqiqatdan qaytarmoqchimisiz?")) return;
 
         try {
-            await axios.post('http://localhost:5000/api/books/return', {
+            await api.post('/api/books/return', {
                 loanId,
                 bookId // Qaysi kitobligini bilishimiz kerak, sonini ko'paytirish uchun
             });

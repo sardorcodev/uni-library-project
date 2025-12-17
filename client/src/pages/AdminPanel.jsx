@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { Link } from 'react-router-dom';
 
 const AdminPanel = () => {
@@ -14,7 +14,7 @@ const AdminPanel = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/books/add', formData);
+            await api.post('/api/books/add', formData);
             alert("Kitob muvaffaqiyatli qo'shildi!");
             // Formani tozalash
             setFormData({ title: '', isbn: '', categoryId: 1, year: '', copies: '' });

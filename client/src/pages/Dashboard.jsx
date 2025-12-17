@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '../api'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/books')
+      const response = await api.get('/api/books')
       setBooks(response.data)
     } catch (error) {
       console.error(error)
@@ -32,7 +32,7 @@ const Dashboard = () => {
   const handleBorrow = async bookId => {
     try {
       // Endi haqiqiy User ID ni yuboramiz
-      await axios.post('http://localhost:5000/api/books/borrow', {
+      await api.post('/api/books/borrow', {
         userId: user.id,
         bookId: bookId,
       })
