@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
@@ -9,7 +9,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+            const res = await api.get('/api/books');
             
             // Serverdan kelgan TOKEN va USER ma'lumotini saqlaymiz
             localStorage.setItem('token', res.data.token);
